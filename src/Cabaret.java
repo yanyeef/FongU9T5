@@ -36,5 +36,49 @@ public class Cabaret {
         return false;
     }
 
+    public double averagePerformerAge(){
+        double sum = 0;
+        for(Performer p : performers){
+            sum+= p.getAge();
+        }
+
+        return sum/performers.size();
+    }
+
+    public ArrayList<Performer> performersOverAge(int age) {
+        ArrayList<Performer> amount = new ArrayList<Performer>();
+        for(Performer p: performers) {
+            if(p.getAge() >= age) {
+                amount.add(p);
+            }
+        }
+        return amount;
+    }
+
+    public void groupRehearsal(){
+        for(Performer performer : performers){
+            System.out.println("REHEARSAL CALL! " + performer.getName());
+
+            if(performer instanceof Comedian){
+                // cast the performer as a comedian
+                Comedian temp = (Comedian) performer;
+                temp.rehearse(false);
+            } else {
+                performer.rehearse();
+            }
+        }
+    }
+
+    public void cabaretShow(){
+        for(Performer p : performers){
+            System.out.println("Welcome to the cabaret! Next act up " + p.getName());
+
+            if(p instanceof Dancer){
+                Dancer temp = (Dancer)p;
+                temp.pirouette(2);
+            }
+            p.perform();
+        }
+    }
 
 }
